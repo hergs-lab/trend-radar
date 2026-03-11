@@ -1,0 +1,43 @@
+name: Weekly Trend Radar
+
+on:
+  # Monday 7am Sydney time
+  # Sydney is UTC+11 (AEDT, Oct–Apr) or UTC+10 (AEST, Apr–Oct)
+  # Using 20:00 UTC Sunday covers both — lands at 6am–7am Sydney depending on DST
+  schedule:
+    - cron: "0 20 * * 0"
+
+  # Also allows manual trigger from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Generate trend radar
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python generate.py
+
+      - name: Commit and push updated file
+        run: |
+          git config user.name "Trend Radar Bot"
+          git config user.email "actions@github.com"
+          git add docs/index.html
+          git diff --staged --quiet || git commit -m "Weekly trend radar $(date +'%Y-%m-%d')"
+          git push
