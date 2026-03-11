@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Trend Radar — Week of 11 March 2026</title>
+<style>
+  /*
+   * City of Sydney — Digital Design Language
+   * Source: Digital products / Digital design language (Isobar/Sitecore) / Foundations
+   *
+   * Typeface: Helvetica Now (licensed)
+   *   Display Bold — large headings (M, L, XL, XXL)
+   *   Text Bold    — small headings (XS, S)
+   *   Text Regular — body, labels
+   *   Micro Bold   — XS-Cap labels
+   * Fallback: Helvetica, system sans-serif
+   *
+   * Core colours:
+   *   Core Deep Blue 100:  #041C2C  — primary dark text & dark backgrounds
+   *   Core Deep Blue 75:   #4E5A5F  — secondary/muted text
+   *   Core Blue 100:       #0850A1  — interactive, links
+   *   Core Green 110:      #188838  — accessible link colour on white
+   *   Core Light:          #F2ECE7  — warm light background
+   *   Core Deep Blue 7:    #F0F1F2  — cool light background, borders
+   *   Core White:          #FFFFFF
+   *   Potts Point Red 110: #B00020  — error / signal accent
+   *
+   * Platform colours are product brand colours — retained as-is.
+   */
+  :root {
+    /* CoS dark background — deep blue, not pure black */
+    --bg:        #041C2C;
+    --surface:   #0a2a3d;
+    --surface2:  #0f3350;
+    --border:    #1a3d52;
+    --text:      #ffffff;
+    --muted:     #7a9ab0;   /* Core Deep Blue 75 lightened for dark bg contrast */
+    --soft:      #a8bfcc;   /* softer label text on dark bg */
+    /* CoS brand */
+    --cos-blue:  #0850A1;
+    --cos-green: #188838;
+    --cos-red:   #B00020;
+    --cos-light: #F2ECE7;
+    /* Platform colours — product brand, not CoS */
+    --tiktok:    #ff2d55;
+    --instagram: #e1a84a;
+    --linkedin:  #4a9eed;
+    --youtube:   #e84040;
+    /* Accent for signal tags */
+    --accent:    #188838;   /* Core Green 110 — primary CoS accent */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* HEADER */
+  header {
+    padding: 52px 80px 36px;
+    border-bottom: 1px solid #d4ccc6;
+    background: var(--cos-light);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .header-label {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--cos-green);
+    margin-bottom: 12px;
+  }
+
+  .header-title {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 700;
+    line-height: 1;
+    color: #041C2C;
+  }
+
+  .header-meta { text-align: right; }
+
+  .header-date {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    color: #4E5A5F;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .platform-dots { display: flex; gap: 7px; justify-content: flex-end; margin-top: 10px; }
+  .platform-dot { width: 9px; height: 9px; border-radius: 50%; }
+
+  /* NAV */
+  nav {
+    padding: 0 80px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+  }
+
+  nav a {
+    padding: 14px 26px;
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-right: 1px solid var(--border);
+    transition: color 0.18s, background 0.18s;
+    white-space: nowrap;
+  }
+
+  nav a:first-child { border-left: 1px solid var(--border); }
+  nav a:hover { color: var(--text); background: var(--surface); }
+  nav a.tiktok:hover { color: var(--tiktok); }
+  nav a.instagram:hover { color: var(--instagram); }
+  nav a.linkedin:hover { color: var(--linkedin); }
+  nav a.youtube:hover { color: var(--youtube); }
+
+  /* PLATFORM SECTIONS */
+  .platform-section {
+    border-bottom: 1px solid var(--border);
+    padding: 52px 80px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .platform-section:nth-child(1) { animation-delay: 0.08s; }
+  .platform-section:nth-child(2) { animation-delay: 0.16s; }
+  .platform-section:nth-child(3) { animation-delay: 0.24s; }
+  .platform-section:nth-child(4) { animation-delay: 0.32s; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .platform-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .platform-name {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: clamp(30px, 3.2vw, 44px);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .platform-name.tiktok    { color: var(--tiktok); }
+  .platform-name.instagram { color: var(--instagram); }
+  .platform-name.linkedin  { color: var(--linkedin); }
+  .platform-name.youtube   { color: var(--youtube); }
+
+  .platform-count {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* TREND GRID */
+  .trend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .trend-card {
+    background: var(--surface);
+    padding: 24px 22px 20px;
+    transition: background 0.18s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .trend-card:hover { background: var(--surface2); }
+
+  /* platform colour bar */
+  .trend-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+
+  .tiktok    .trend-card::before { background: var(--tiktok); }
+  .instagram .trend-card::before { background: var(--instagram); }
+  .linkedin  .trend-card::before { background: var(--linkedin); }
+  .youtube   .trend-card::before { background: var(--youtube); }
+
+  .trend-number {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 9.5px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+
+  .trend-title {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  /* Sharp one-liner — most prominent */
+  .trend-insight {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Supporting detail — dimmer */
+  .trend-detail {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+
+  .trend-detail strong {
+    color: var(--soft);
+    font-weight: 400;
+  }
+
+  /* CREATORS PANEL */
+  .creators-panel {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+
+  .creators-label {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+
+  .tiktok    .creators-label { color: var(--tiktok); }
+  .instagram .creators-label { color: var(--instagram); }
+  .linkedin  .creators-label { color: var(--linkedin); }
+  .youtube   .creators-label { color: var(--youtube); }
+
+  .creator-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .creator-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .creator-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .creator-why {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  /* Tags */
+  .trend-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: auto;
+  }
+
+  .tag {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    background: var(--bg);
+    color: var(--muted);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+  }
+
+  .tag.signal {
+    color: #188838;
+    border-color: rgba(24, 136, 56, 0.4);
+    background: rgba(24, 136, 56, 0.08);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-label {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 9.5px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    line-height: 1.9;
+  }
+
+  .sources {
+    font-size: 10.5px;
+    color: var(--muted);
+    line-height: 1.9;
+    text-align: right;
+  }
+
+  .scroll-hint {
+    position: fixed;
+    bottom: 24px; right: 32px;
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    transition: opacity 0.4s;
+  }
+
+  .scroll-hint::after {
+    content: ' ↓';
+    display: inline-block;
+    animation: bounce 1.4s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(4px); }
+  }
+
+  /* ENDURING TRENDS */
+  .enduring-section {
+    background: var(--cos-light);
+    padding: 52px 80px;
+    border-top: 1px solid #d4ccc6;
+  }
+
+  .enduring-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .enduring-label {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cos-green);
+  }
+
+  .enduring-title {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #041C2C;
+  }
+
+  .enduring-subtitle {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #4E5A5F;
+    margin-top: 4px;
+  }
+
+  .enduring-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: #d4ccc6;
+    border: 1px solid #d4ccc6;
+  }
+
+  .enduring-item {
+    background: #ffffff;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .enduring-name {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #041C2C;
+  }
+
+  .enduring-rationale {
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 12.5px;
+    color: #4E5A5F;
+    line-height: 1.5;
+  }
+
+  .enduring-momentum {
+    margin-top: 6px;
+    display: inline-block;
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    align-self: flex-start;
+  }
+
+  .enduring-momentum.growing {
+    background: rgba(24, 136, 56, 0.1);
+    color: #188838;
+  }
+
+  .enduring-momentum.plateaued {
+    background: rgba(8, 80, 161, 0.08);
+    color: #0850A1;
+  }
+
+  .enduring-momentum.declining {
+    background: rgba(78, 90, 95, 0.1);
+    color: #4E5A5F;
+  }
+
+  @media (max-width: 900px) {
+    header, nav, .platform-section, .enduring-section, footer { padding-left: 20px; padding-right: 20px; }
+    .trend-grid { grid-template-columns: 1fr; }
+    .enduring-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div style="background:#041C2C; height:5px; width:100%; border-bottom: 2px solid #188838;"></div>
+
+<header>
+  <div>
+    <div class="header-label">City of Sydney — Digital Content Team</div>
+    <h1 class="header-title">Social Trend<br>Radar</h1>
+  </div>
+  <div class="header-meta">
+    <div class="header-date">WEEK OF 11 MARCH 2026</div>
+    <div class="platform-dots">
+      <div class="platform-dot" style="background:var(--tiktok)"></div>
+      <div class="platform-dot" style="background:var(--instagram)"></div>
+      <div class="platform-dot" style="background:var(--linkedin)"></div>
+      <div class="platform-dot" style="background:var(--youtube)"></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="#tiktok"    class="tiktok">TikTok</a>
+  <a href="#instagram" class="instagram">Instagram</a>
+  <a href="#linkedin"  class="linkedin">LinkedIn</a>
+  <a href="#youtube"   class="youtube">YouTube</a>
+</nav>
+
+<main>
+
+  <!-- TIKTOK -->
+  <section class="platform-section tiktok" id="tiktok">
+    <div class="platform-header">
+      <h2 class="platform-name tiktok">TikTok</h2>
+      <span class="platform-count">03 TRENDS</span>
+    </div>
+    <div class="trend-grid">
+
+      <div class="trend-card">
+        <div class="trend-number">TK — 01</div>
+        <div class="trend-title">Audio-led contrast humour</div>
+        <div class="trend-insight">Heavy audio, trivial situation. The bigger the gap, the better it lands.</div>
+        <div class="trend-detail">Two sounds running hard: <strong>Jocko Willink's "do you actually want to do this?"</strong> paired with minor inconveniences, and <strong>Charli XCX's "Boom Clap"</strong> for stories where something small got a surprisingly warm response. Quick to produce, no production value required.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Service businesses</span>
+              <span class="creator-why">Client stories with a sharp punchline</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Workplace creators</span>
+              <span class="creator-why">"When a stakeholder asks for one small change"</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Audio-driven</span>
+          <span class="tag">Reactive</span>
+          <span class="tag signal">↑ High volume</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">TK — 02</div>
+        <div class="trend-title">Quiet flex + companion content</div>
+        <div class="trend-insight">Authenticity is the brief. Overproduction is actively penalised right now.</div>
+        <div class="trend-detail"><strong>Quiet flex</strong>: calm, aspirational aesthetics — neutral palettes, understated confidence. <strong>Companion content</strong>: "work a 9-5 with me" formats putting the viewer alongside the creator. One-take clips outperform studio outputs.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Alo Yoga</span>
+              <span class="creator-why">Serene stretches, minimalist studio shots</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Chamberlain Coffee</span>
+              <span class="creator-why">Handheld one-take videos, casual check-in feel</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Aesthetic</span>
+          <span class="tag">Lo-fi</span>
+          <span class="tag signal">↑ Sustained</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">TK — 03</div>
+        <div class="trend-title">Cultural moment surfing</div>
+        <div class="trend-insight">March is unusually rich. Speed is the skill — audio value drops after 48 hours.</div>
+        <div class="trend-detail"><strong>Oscars (15 Mar)</strong>: glambot rankings, outfit tier lists. <strong>Harry Styles album (6 Mar)</strong>: "Aperture" running under cinematic GRWM content. <strong>Bachelorette premiere (22 Mar)</strong>: reaction and ranking content.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Fashion creators</span>
+              <span class="creator-why">Outfit tier lists and glambot recreations</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Entertainment accounts</span>
+              <span class="creator-why">Reaction and ranking formats around each event</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Reactive</span>
+          <span class="tag">Time-sensitive</span>
+          <span class="tag signal">↑ Imminent</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="platform-section instagram" id="instagram">
+    <div class="platform-header">
+      <h2 class="platform-name instagram">Instagram</h2>
+      <span class="platform-count">03 TRENDS</span>
+    </div>
+    <div class="trend-grid">
+
+      <div class="trend-card">
+        <div class="trend-number">IG — 01</div>
+        <div class="trend-title">Stomp-reveal text Reels</div>
+        <div class="trend-insight">Each stomp reveals a new text line. The last line has to earn the whole build.</div>
+        <div class="trend-detail">Creator films centred in frame; each jump shifts the frame down to reveal text. Used for opinion pieces, mini-stories, punchy reveals. Works in <strong>15–30 seconds</strong>. Adapting well for product launches.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Product brands</span>
+              <span class="creator-why">Campaign and new drop reveals</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Opinion creators</span>
+              <span class="creator-why">Hot takes with a payoff final line</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Reels</span>
+          <span class="tag">Text-on-screen</span>
+          <span class="tag signal">↑ Current</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">IG — 02</div>
+        <div class="trend-title">Everyday drama</div>
+        <div class="trend-insight">Theatrical gesture, mundane context. Play it completely straight — winking kills it.</div>
+        <div class="trend-detail">The Bridgerton Shuffle: a Regency-era dance move dropped into ordinary moments. <strong>The grander the gesture, the more mundane the setting needs to be.</strong> Humour is contextual — no explanation needed or wanted.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Dove</span>
+              <span class="creator-why">"Let Them Talk" campaign, Bridgerton tie-in</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Nuuly</span>
+              <span class="creator-why">Regency-era rental collection, deadpan execution</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Reels</span>
+          <span class="tag">Humour</span>
+          <span class="tag signal">↑ Current</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">IG — 03</div>
+        <div class="trend-title">Audience discovery carousel</div>
+        <div class="trend-insight">"If you like X, follow me." Trending audio + explicit follow invitation = reliable growth format.</div>
+        <div class="trend-detail">~10 images or clips representing content style or product range, set to trending audio (currently the Harry Styles cycle). Metric to watch: <strong>profile visits and follows, not reach</strong>.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Handmade businesses</span>
+              <span class="creator-why">Aesthetic product compilations with direct follow CTA</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Lifestyle creators</span>
+              <span class="creator-why">Content style carousels targeting niche audiences</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Carousel</span>
+          <span class="tag">Discovery</span>
+          <span class="tag signal">↑ Sustained</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LINKEDIN -->
+  <section class="platform-section linkedin" id="linkedin">
+    <div class="platform-header">
+      <h2 class="platform-name linkedin">LinkedIn</h2>
+      <span class="platform-count">03 TRENDS</span>
+    </div>
+    <div class="trend-grid">
+
+      <div class="trend-card">
+        <div class="trend-number">LI — 01</div>
+        <div class="trend-title">Work humour and raw authenticity</div>
+        <div class="trend-insight">March 2026 algorithm update targets engagement bait. Light self-awareness wins.</div>
+        <div class="trend-detail">Posts acknowledging professional absurdities — meetings that should have been emails, feedback cycles — without cynicism. <strong>Algorithm rewards comments above all other signals.</strong> This format reliably generates them.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Charlie Hills</span>
+              <span class="creator-why">132k followers via authentic engagement + dry workplace humour</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Workplace culture accounts</span>
+              <span class="creator-why">Relatable takes that invite comment over like</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Text post</span>
+          <span class="tag">Short video</span>
+          <span class="tag signal">↑ Algorithm-favoured</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">LI — 02</div>
+        <div class="trend-title">Personal storytelling carousels</div>
+        <div class="trend-insight">Still the highest-engagement format. But it's personal narrative now, not frameworks.</div>
+        <div class="trend-detail">Professional pivots, lessons from failure, career horror stories. For organisations: <strong>amplify staff voices</strong> rather than posting in corporate voice — staff-authored posts consistently outperform brand-authored ones.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">April Little</span>
+              <span class="creator-why">260k followers; candid posts on layoffs and career pivots</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">IKEA</span>
+              <span class="creator-why">Extended carousel format; 40-year meatball anniversary timeline</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Carousel</span>
+          <span class="tag">Storytelling</span>
+          <span class="tag signal">↑ High saves</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">LI — 03</div>
+        <div class="trend-title">Sub-90-second native video</div>
+        <div class="trend-insight">LinkedIn is boosting native video. Uploading a YouTube link is a reach penalty.</div>
+        <div class="trend-detail">Direct-to-camera, captioned, single topic. Structure: <strong>hook → three rapid points → question</strong>. Posts gaining engagement in the first 60 minutes get pushed wider — timing to your audience's active hours matters.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Executive creators</span>
+              <span class="creator-why">Face-to-camera takes on industry shifts under 90s</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Recruitment accounts</span>
+              <span class="creator-why">"Top 3 mistakes" format with comment CTA</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Native video</span>
+          <span class="tag">Sub 90s</span>
+          <span class="tag signal">↑ Platform-boosted</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- YOUTUBE -->
+  <section class="platform-section youtube" id="youtube">
+    <div class="platform-header">
+      <h2 class="platform-name youtube">YouTube</h2>
+      <span class="platform-count">03 TRENDS</span>
+    </div>
+    <div class="trend-grid">
+
+      <div class="trend-card">
+        <div class="trend-number">YT — 01</div>
+        <div class="trend-title">Shorts for discovery, long-form for depth</div>
+        <div class="trend-insight">The Short is the invitation. The long video is the relationship.</div>
+        <div class="trend-detail">74% of Shorts views come from non-subscribers — primary top-of-funnel. Channels using <strong>both formats together grow 41% faster</strong>. Use Shorts as teasers; playlists encourage consecutive viewing.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Madeline Argy</span>
+              <span class="creator-why">Short-form to long-form pipeline; 40-min essays from Shorts audience</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Education channels</span>
+              <span class="creator-why">Shorts as 60s teasers driving full-length explainers</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Shorts</span>
+          <span class="tag">Long-form</span>
+          <span class="tag signal">↑ Platform priority</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">YT — 02</div>
+        <div class="trend-title">Structured series and recurring formats</div>
+        <div class="trend-insight">Audiences return because they know what to expect. Consistency beats brilliance.</div>
+        <div class="trend-detail">Highest-performing channels repeat a recognisable format. One-off uploads don't build a return audience. <strong>A defined format and rhythm does.</strong> YouTube calls this "digital franchises." 57% of viewers prefer series over one-offs.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Quenlin Blackwell</span>
+              <span class="creator-why">"Feeding Starving Celebrities" — consistent format, hour-long episodes</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Glitch Studio</span>
+              <span class="creator-why">Behind-the-scenes series pulling fans into the production pipeline</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Series format</span>
+          <span class="tag">Long-form</span>
+          <span class="tag signal">↑ Loyalty driver</span>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-number">YT — 03</div>
+        <div class="trend-title">TV-screen storytelling</div>
+        <div class="trend-insight">Mobile content and TV content are now genuinely different briefs.</div>
+        <div class="trend-detail">YouTube is 12%+ of all US TV viewing time. <strong>TV rewards slower pacing, widescreen framing, chapter-based storytelling.</strong> Over-produced videos underperform — viewers read them as ads. Raw, unscripted content is winning.</div>
+        <div class="creators-panel">
+          <div class="creators-label">Doing it well</div>
+          <div class="creator-list">
+            <div class="creator-item">
+              <span class="creator-name">Documentary-style channels</span>
+              <span class="creator-why">Cinematic pacing, widescreen framing, chapter markers</span>
+            </div>
+            <div class="creator-item">
+              <span class="creator-name">Gary's Economics</span>
+              <span class="creator-why">Long-form explainers; 1M+ subs via unscripted authenticity</span>
+            </div>
+          </div>
+        </div>
+        <div class="trend-tags">
+          <span class="tag">Connected TV</span>
+          <span class="tag">Long-form</span>
+          <span class="tag signal">↑ Growing fast</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<section class="enduring-section">
+  <div class="enduring-header">
+    <div>
+      <div class="enduring-label">Always in the mix</div>
+      <div class="enduring-title">Enduring Trends</div>
+      <div class="enduring-subtitle">Not new — but still working. Durable formats and behaviours worth keeping in your content mix.</div>
+    </div>
+  </div>
+  <div class="enduring-strip">
+
+    <div class="enduring-item">
+      <div class="enduring-name">Authentic behind-the-scenes</div>
+      <div class="enduring-rationale">Unpolished process content consistently outperforms produced content for trust and saves. Works across all platforms.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">Educational carousels</div>
+      <div class="enduring-rationale">Step-by-step and list-format carousels remain Instagram's highest-save format. LinkedIn equivalent drives consistent reach for B2B.</div>
+      <span class="enduring-momentum plateaued">→ Plateaued</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">Creator-led storytelling</div>
+      <div class="enduring-rationale">First-person narrative with a clear point of view. Audiences follow people, not brands — partnering with or mimicking creator voice still compounds.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">Community questions & polls</div>
+      <div class="enduring-rationale">Direct audience prompts — "which would you choose", "tell us your pick" — reliably lift comments and signal to algorithms. Fatigue is low.</div>
+      <span class="enduring-momentum plateaued">→ Plateaued</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">Short-form vertical video</div>
+      <div class="enduring-rationale">The default format. Not a trend anymore — it's table stakes. Any content strategy not producing vertical video is operating at a structural disadvantage.</div>
+      <span class="enduring-momentum declining">↓ Maturing</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-label">Sources: New Engen · Pepper Agency · Later · Social Pilot · Metricool<br>Bright Words Creative · Navigate Video · Loopex Digital · Marketing Brew</div>
+  <div class="sources">Research compiled from publicly available analytics publications<br>current to 11 March 2026 — City of Sydney Digital Content Team</div>
+</footer>
+
+<div class="scroll-hint">Scroll</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.querySelector('.scroll-hint').style.opacity = '0';
+  }, { once: true });
+
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
