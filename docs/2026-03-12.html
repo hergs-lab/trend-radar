@@ -1,11 +1,9 @@
-Now I have comprehensive research across all platforms. Let me create the HTML file with the trends I've identified.
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Social Trend Radar · Week of 2026-03-12</title>
+<title>Social Trend Radar — Week of 2026-03-12</title>
 <style>
 * {
   margin: 0;
@@ -13,109 +11,154 @@ Now I have comprehensive research across all platforms. Let me create the HTML f
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #041C2C;
+  --surface: #0a2a3d;
+  --surface2: #0f3350;
+  --border: #1a3d52;
+  --text: #ffffff;
+  --muted: #7a9ab0;
+  --soft: #a8bfcc;
+  --cos-blue: #0850A1;
+  --cos-green: #188838;
+  --cos-red: #B00020;
+  --cos-light: #F2ECE7;
+  --accent: #188838;
+  
+  --tiktok: #ff2d55;
+  --instagram: #e1a84a;
+  --linkedin: #4a9eed;
+  --youtube: #e84040;
+}
+
 body {
   font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
-  background: #041C2C;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
 }
 
 .brand-bar {
   height: 5px;
   background: #041C2C;
-  border-bottom: 2px solid #188838;
+  border-bottom: 2px solid var(--cos-green);
 }
 
 header {
-  padding: 60px 80px 40px;
-  border-bottom: 1px solid #1a3d52;
+  padding: 52px 80px 32px;
+  border-bottom: 1px solid var(--border);
 }
 
-.header-title {
-  font-size: 42px;
+header h1 {
+  font-size: 36px;
   font-weight: 700;
   margin-bottom: 8px;
-  letter-spacing: -0.02em;
 }
 
-.header-date {
-  font-size: 15px;
-  color: #a8bfcc;
-  margin-bottom: 24px;
+header h1 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+header h1 a:hover {
+  opacity: 0.85;
+}
+
+.meta {
+  font-size: 14px;
+  color: var(--soft);
+  margin-bottom: 16px;
 }
 
 .platform-dots {
   display: flex;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.platform-dot {
-  width: 10px;
-  height: 10px;
+.dot {
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
 }
+
+.dot.tiktok { background: var(--tiktok); }
+.dot.instagram { background: var(--instagram); }
+.dot.linkedin { background: var(--linkedin); }
+.dot.youtube { background: var(--youtube); }
 
 nav {
   position: sticky;
   top: 0;
-  background: rgba(4, 28, 44, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #1a3d52;
-  padding: 20px 80px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 80px;
+  display: flex;
+  gap: 32px;
   z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
 nav a {
-  color: #a8bfcc;
+  color: var(--soft);
   text-decoration: none;
-  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 13px;
   text-transform: uppercase;
-  margin-right: 32px;
+  letter-spacing: 0.08em;
   transition: color 0.2s;
 }
 
 nav a:hover {
-  color: #ffffff;
+  color: var(--text);
 }
 
 section {
-  padding: 72px 80px;
-  border-bottom: 1px solid #1a3d52;
+  padding: 64px 80px;
+  border-bottom: 1px solid var(--border);
 }
 
 .section-header {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
-.section-label {
-  font-size: 11px;
+.platform-label {
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
+  letter-spacing: 0.12em;
   margin-bottom: 8px;
 }
 
 .section-title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
 }
+
+.tiktok-label { color: var(--tiktok); }
+.instagram-label { color: var(--instagram); }
+.linkedin-label { color: var(--linkedin); }
+.youtube-label { color: var(--youtube); }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 24px;
 }
 
 .card {
-  background: #0a2a3d;
+  background: var(--surface);
   border-left: 3px solid;
-  padding: 28px;
-  transition: all 0.3s;
+  padding: 24px;
+  transition: all 0.3s ease;
   opacity: 0;
-  animation: fadeUp 0.6s forwards;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.card:hover {
+  background: var(--surface2);
+  transform: translateY(-2px);
 }
 
 .card:nth-child(1) { animation-delay: 0.1s; }
@@ -123,108 +166,117 @@ section {
 .card:nth-child(3) { animation-delay: 0.3s; }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.card:hover {
-  background: #0f3350;
-  transform: translateY(-2px);
-}
+.tiktok .card { border-left-color: var(--tiktok); }
+.instagram .card { border-left-color: var(--instagram); }
+.linkedin .card { border-left-color: var(--linkedin); }
+.youtube .card { border-left-color: var(--youtube); }
 
-.card-number {
+.trend-number {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 16px;
-  opacity: 0.8;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
 }
 
-.card-title {
+.tiktok .trend-number { color: var(--tiktok); }
+.instagram .trend-number { color: var(--instagram); }
+.linkedin .trend-number { color: var(--linkedin); }
+.youtube .trend-number { color: var(--youtube); }
+
+.trend-title {
   font-size: 18px;
   font-weight: 700;
-  margin-bottom: 16px;
-  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--text);
 }
 
-.card-insight {
+.insight {
   font-size: 15px;
   font-weight: 500;
-  color: #ffffff;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #1a3d52;
-  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
 }
 
-.card-detail {
+.detail {
   font-size: 13px;
-  color: #a8bfcc;
-  margin-bottom: 20px;
+  color: var(--muted);
   line-height: 1.6;
+  margin-bottom: 16px;
 }
 
-.card-creators {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 2px;
+.creators-panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  padding: 14px;
+  margin-bottom: 14px;
 }
 
 .creators-label {
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 12px;
-  opacity: 0.9;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
 }
 
+.tiktok .creators-label { color: var(--tiktok); }
+.instagram .creators-label { color: var(--instagram); }
+.linkedin .creators-label { color: var(--linkedin); }
+.youtube .creators-label { color: var(--youtube); }
+
 .creator-entry {
-  font-size: 12px;
   margin-bottom: 8px;
-  line-height: 1.5;
+}
+
+.creator-entry:last-child {
+  margin-bottom: 0;
 }
 
 .creator-name {
+  font-size: 12px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .creator-reason {
-  color: #a8bfcc;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
-.card-tags {
+.tags {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 6px;
 }
 
 .tag {
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
 }
 
 .tag.signal {
-  background: rgba(24, 136, 56, 0.15);
-  color: #188838;
+  background: rgba(24,136,56,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .enduring-section {
-  background: #F2ECE7;
+  background: var(--cos-light);
   padding: 52px 80px;
   border-top: 1px solid #d4ccc6;
 }
@@ -239,7 +291,7 @@ section {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #188838;
+  color: var(--cos-green);
 }
 
 .enduring-title {
@@ -300,82 +352,66 @@ section {
 }
 
 .enduring-momentum.growing {
-  background: rgba(24, 136, 56, 0.1);
-  color: #188838;
+  background: rgba(24,136,56,0.1);
+  color: var(--cos-green);
 }
 
 .enduring-momentum.plateaued {
-  background: rgba(8, 80, 161, 0.08);
-  color: #0850A1;
+  background: rgba(8,80,161,0.08);
+  color: var(--cos-blue);
 }
 
 .enduring-momentum.declining {
-  background: rgba(78, 90, 95, 0.1);
+  background: rgba(78,90,95,0.1);
   color: #4E5A5F;
 }
 
 footer {
   padding: 48px 80px;
-  color: #7a9ab0;
+  color: var(--muted);
   font-size: 12px;
-}
-
-.footer-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  color: #a8bfcc;
-}
-
-.footer-sources {
-  line-height: 1.8;
+  border-top: 1px solid var(--border);
 }
 
 .scroll-hint {
   position: fixed;
-  bottom: 32px;
-  right: 80px;
+  bottom: 24px;
+  right: 24px;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #7a9ab0;
+  color: var(--soft);
+  background: var(--surface);
+  padding: 8px 12px;
+  border: 1px solid var(--border);
   opacity: 1;
   transition: opacity 0.3s;
-  pointer-events: none;
 }
 
 .scroll-hint.hidden {
   opacity: 0;
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {
-  header, nav, section, .enduring-section, footer {
+  header, nav, section, footer, .enduring-section {
     padding-left: 24px;
     padding-right: 24px;
   }
-
+  
   .card-grid {
     grid-template-columns: 1fr;
   }
-
-  .header-title {
-    font-size: 32px;
+  
+  nav {
+    flex-wrap: wrap;
+    gap: 16px;
   }
-
+  
+  header h1 {
+    font-size: 28px;
+  }
+  
   .section-title {
-    font-size: 24px;
-  }
-
-  nav a {
-    margin-right: 20px;
-    font-size: 12px;
-  }
-
-  .scroll-hint {
-    right: 24px;
+    font-size: 22px;
   }
 }
 </style>
@@ -385,13 +421,13 @@ footer {
 <div class="brand-bar"></div>
 
 <header>
-  <div class="header-title">Social Trend Radar</div>
-  <div class="header-date">Week of 2026-03-12</div>
+  <h1><a href="/trend-radar/">Social Trend Radar</a></h1>
+  <div class="meta">Week of 2026-03-12 — City of Sydney Digital Content Team</div>
   <div class="platform-dots">
-    <div class="platform-dot" style="background: #ff2d55;"></div>
-    <div class="platform-dot" style="background: #e1a84a;"></div>
-    <div class="platform-dot" style="background: #4a9eed;"></div>
-    <div class="platform-dot" style="background: #e84040;"></div>
+    <div class="dot tiktok"></div>
+    <div class="dot instagram"></div>
+    <div class="dot linkedin"></div>
+    <div class="dot youtube"></div>
   </div>
 </header>
 
@@ -403,298 +439,301 @@ footer {
   <a href="/trend-radar/archive.html">Archive</a>
 </nav>
 
-<section id="tiktok">
+<section id="tiktok" class="tiktok">
   <div class="section-header">
-    <div class="section-label" style="color: #ff2d55;">TikTok</div>
-    <div class="section-title">Grounded authenticity over delulu escapism</div>
+    <div class="platform-label tiktok-label">Platform</div>
+    <div class="section-title">TikTok</div>
   </div>
+  
   <div class="card-grid">
     
-    <div class="card" style="border-left-color: #ff2d55;">
-      <div class="card-number" style="color: #ff2d55;">TK-01</div>
-      <div class="card-title">Unfiltered BTS over curated perfection</div>
-      <div class="card-insight">People are craving realism over romanticism — audiences want unpolished process, real people, and honest emotion instead of artfully curated fantasy.</div>
-      <div class="card-detail">TikTok's 2026 forecast shows audiences rejecting the #delulu era in favour of content that feels grounding and useful. Behind-the-scenes process content, lock-in mindset videos, and raw emotional validation are outperforming polished aesthetic posts.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #ff2d55;">DOING IT WELL</div>
+    <div class="card">
+      <div class="trend-number">TK-01</div>
+      <div class="trend-title">"2016 Is Back" Nostalgia Wave</div>
+      <div class="insight">Creators are reviving 2016 aesthetics with flower crowns, dog filters, and saturated Snapchat-style edits.</div>
+      <div class="detail">The trend celebrates peak pop music, Pokémon Go, and a simpler internet era. Some post archival footage while others recreate the look in new videos. It's silly, sincere, and packed with millennial/Gen Z affection for a year that defined their youth.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
         <div class="creator-entry">
-          <span class="creator-name">Oreo</span> — 
-          <span class="creator-reason">Transformed channel into playful clubhouse mirroring audience lingo and real-time trends</span>
+          <div class="creator-name">@jr_stit / Lifestyle creators</div>
+          <div class="creator-reason">Mixing throwback photos with Valencia filters and "Lush Life" by Zara Larsson audio</div>
         </div>
         <div class="creator-entry">
-          <span class="creator-name">Chamberlain Coffee</span> — 
-          <span class="creator-reason">Handheld one-take videos that feel like casual check-ins from a friend</span>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="tag signal">SHIFT FROM ESCAPISM</span>
-        <span class="tag">ALGORITHM PRIORITY</span>
-        <span class="tag">AUTHENTICITY</span>
-      </div>
-    </div>
-
-    <div class="card" style="border-left-color: #ff2d55;">
-      <div class="card-number" style="color: #ff2d55;">TK-02</div>
-      <div class="card-title">Companion-style "with me" videos</div>
-      <div class="card-insight">TikTok users want company through their screens — "study with me," "get ready with me," and "work a 9–5 with me" formats pull huge engagement.</div>
-      <div class="card-detail">This trend reflects the broader move toward grounding content that makes audiences feel present rather than distracted. The lo-fi, unpolished production actually resonates more because it feels real and relatable.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #ff2d55;">DOING IT WELL</div>
-        <div class="creator-entry">
-          <span class="creator-name">Lifestyle & productivity creators</span> — 
-          <span class="creator-reason">Simple setups showing real routines without over-production</span>
-        </div>
-        <div class="creator-entry">
-          <span class="creator-name">Study/work communities</span> — 
-          <span class="creator-reason">Building tight-knit tribes through shared accountability moments</span>
+          <div class="creator-name">Nostalgic content channels</div>
+          <div class="creator-reason">Comparing 2016 moments (fashion, music, apps) to 2026 with humorous commentary</div>
         </div>
       </div>
-      <div class="card-tags">
-        <span class="tag signal">PARASOCIAL COMFORT</span>
-        <span class="tag">HIGH ENGAGEMENT</span>
-        <span class="tag">COMMUNITY</span>
+      <div class="tags">
+        <span class="tag signal">Nostalgia</span>
+        <span class="tag">Millennials</span>
+        <span class="tag">Gen Z</span>
       </div>
     </div>
 
-    <div class="card" style="border-left-color: #ff2d55;">
-      <div class="card-number" style="color: #ff2d55;">TK-03</div>
-      <div class="card-title">Nostalgia wave: 2016 is back</div>
-      <div class="card-insight">Creators are posting unearthed photos with dog filters, skinny jeans, and flower crowns — reviving peak Snapchat era aesthetics with both irony and sincerity.</div>
-      <div class="card-detail">The trend defies a unified format: some post archival throwback carousels, others recreate the heavily saturated filter aesthetic in new videos. It taps into love for a year of peak pop music and Pokémon Go, offering comfort through familiar cultural touchpoints.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #ff2d55;">DOING IT WELL</div>
+    <div class="card">
+      <div class="trend-number">TK-02</div>
+      <div class="trend-title">POV Dramatic Overreaction</div>
+      <div class="insight">Low-stakes situations paired with intense audio: "Do you actually want to do this or not?"</div>
+      <div class="detail">Creators use a dramatic podcast clip from Jocko Willink to lampoon trivial moments blown out of proportion—when a customer orders something different, when someone questions your minor life choice. The humor lies in the contrast between the small activity and the disproportionate intensity of the reaction.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
         <div class="creator-entry">
-          <span class="creator-name">Gen Z & millennial creators</span> — 
-          <span class="creator-reason">Mining old camera rolls for genuine throwback content with Valencia filters</span>
+          <div class="creator-name">Hospitality & retail workers</div>
+          <div class="creator-reason">Sharing customer service moments that escalated unnecessarily</div>
         </div>
         <div class="creator-entry">
-          <span class="creator-name">Pop culture commentators</span> — 
-          <span class="creator-reason">Comparing and debating 2016 memories to spark conversation</span>
+          <div class="creator-name">Service business accounts</div>
+          <div class="creator-reason">Using the audio to humorously call out common workplace absurdities</div>
         </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">NOSTALGIA</span>
-        <span class="tag">CULTURAL MOMENT</span>
-        <span class="tag signal">VIRALITY</span>
+      <div class="tags">
+        <span class="tag">Relatable</span>
+        <span class="tag signal">Comedy</span>
+        <span class="tag">Audio-driven</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="trend-number">TK-03</div>
+      <div class="trend-title">Oscars & Cultural Moments</div>
+      <div class="insight">The 98th Academy Awards (March 15) + Bachelorette premiere + Harry Styles album = trend fuel.</div>
+      <div class="detail">March is stacked with high-attention cultural events. Oscars content includes glambot rankings, outfit tier lists, and Conan O'Brien memes. Harry Styles' "Kiss All the Time. Disco, Occasionally." is flooding GRWMs and transition videos. Bachelorette Season 22 with Taylor Frankie Paul drives reaction content and drama breakdowns. These moments offer timely hooks for creators to enter broader conversations.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
+        <div class="creator-entry">
+          <div class="creator-name">Entertainment TikTok creators</div>
+          <div class="creator-reason">Quick reactions, outfit rankings, and meme edits tied to live broadcasts</div>
+        </div>
+        <div class="creator-entry">
+          <div class="creator-name">Music/fashion accounts</div>
+          <div class="creator-reason">Using Harry Styles tracks for cinematic day-in-the-life montages</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Cultural Moment</span>
+        <span class="tag">Reactive</span>
+        <span class="tag">Music</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<section id="instagram">
+<section id="instagram" class="instagram">
   <div class="section-header">
-    <div class="section-label" style="color: #e1a84a;">Instagram</div>
-    <div class="section-title">Quiet confidence beats loud drops</div>
+    <div class="platform-label instagram-label">Platform</div>
+    <div class="section-title">Instagram</div>
   </div>
+  
   <div class="card-grid">
     
-    <div class="card" style="border-left-color: #e1a84a;">
-      <div class="card-number" style="color: #e1a84a;">IG-01</div>
-      <div class="card-title">Elegant transitions with quiet confidence</div>
-      <div class="card-insight">Tyla's tracks and similar beats show up in sleek aesthetic Reels — fashion transitions and glow-ups where energy feels effortless rather than loud.</div>
-      <div class="card-detail">The beat carries quiet confidence without big drops or drama, but still feels magnetic enough to stop the scroll. It's the aesthetic shift away from chaotic energy toward intentional, understated luxury moments.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #e1a84a;">DOING IT WELL</div>
+    <div class="card">
+      <div class="trend-number">IG-01</div>
+      <div class="trend-title">Bridgerton Shuffle</div>
+      <div class="insight">A tiny ballroom-style dance move dropped into everyday moments—walking to work, grabbing coffee.</div>
+      <div class="detail">The trend uses Peter Gregson's orchestral cover of Charli XCX's "360" (featured in Bridgerton). Creators add theatrical Regency-era flair to mundane routines, turning Monday mornings into "Lady Whistledown is watching" moments. It's elegant, unexpected, and lowkey addictive to watch.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
         <div class="creator-entry">
-          <span class="creator-name">Fashion & lifestyle creators</span> — 
-          <span class="creator-reason">Using outfit changes and walk-ins with minimal but elevated production</span>
+          <div class="creator-name">@petergregson (composer)</div>
+          <div class="creator-reason">Got in on his own groove with the audio he created</div>
         </div>
         <div class="creator-entry">
-          <span class="creator-name">Product brands</span> — 
-          <span class="creator-reason">Revealing products with elegance-focused transitions over hype</span>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="tag signal">QUIET LUXURY</span>
-        <span class="tag">AESTHETIC</span>
-        <span class="tag">ALGORITHM LOVES IT</span>
-      </div>
-    </div>
-
-    <div class="card" style="border-left-color: #e1a84a;">
-      <div class="card-number" style="color: #e1a84a;">IG-02</div>
-      <div class="card-title">Text line drop: kinetic storytelling</div>
-      <div class="card-insight">Each jump or stomp reveals a new line of text — turning simple storytelling into something surprisingly addictive to watch.</div>
-      <div class="card-detail">The motion keeps viewers engaged longer than static text, making even short messages feel dynamic and intentional. It's clean, easy to recreate, and works especially well for opinions, mini-stories, and punchy explanations that build toward a payoff.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #e1a84a;">DOING IT WELL</div>
-        <div class="creator-entry">
-          <span class="creator-name">Opinion & commentary creators</span> — 
-          <span class="creator-reason">Using body movements to reveal hot takes line by line</span>
-        </div>
-        <div class="creator-entry">
-          <span class="creator-name">Storytelling accounts</span> — 
-          <span class="creator-reason">Building narrative tension through progressive text reveals</span>
+          <div class="creator-name">Lifestyle & fashion creators</div>
+          <div class="creator-reason">Adding the shuffle to outfit transitions and morning routines</div>
         </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">INTERACTIVE</span>
-        <span class="tag signal">HIGH RETENTION</span>
-        <span class="tag">EASY FORMAT</span>
+      <div class="tags">
+        <span class="tag">Dance</span>
+        <span class="tag signal">Viral Audio</span>
+        <span class="tag">Bridgerton</span>
       </div>
     </div>
 
-    <div class="card" style="border-left-color: #e1a84a;">
-      <div class="card-number" style="color: #e1a84a;">IG-03</div>
-      <div class="card-title">Bridgerton Shuffle meets mundane life</div>
-      <div class="card-insight">Creators drop tiny ballroom-style dance moves into completely normal moments like walking into work or grabbing coffee — turning errands into Regency-era drama.</div>
-      <div class="card-detail">The trend thrives on contrast: the formality of the dance against the ordinariness of the setting. It's playful, easy to execute, and taps into the cultural momentum of prestige period content hitting mainstream social feeds.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #e1a84a;">DOING IT WELL</div>
+    <div class="card">
+      <div class="trend-number">IG-02</div>
+      <div class="trend-title">"I Fell, But I Saved My…"</div>
+      <div class="insight">Creators lie dramatically on the floor clutching the one thing they saved—usually their matcha latte.</div>
+      <div class="detail">POV: you tripped, your belongings scattered everywhere, but you heroically saved your favorite drink or product. It's chaotic, relatable, and perfect for beverage brands or beauty products. Coffee shops are recreating this with just stairs and a drink. The trend shows what matters most in a split-second moment.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
         <div class="creator-entry">
-          <span class="creator-name">Lifestyle creators</span> — 
-          <span class="creator-reason">Inserting the shuffle into daily routines for comedic effect</span>
+          <div class="creator-name">@coffeecloud.briarwood</div>
+          <div class="creator-reason">Simple set of steps, scattered belongings, drink held upright—clean execution</div>
         </div>
         <div class="creator-entry">
-          <span class="creator-name">Brand accounts</span> — 
-          <span class="creator-reason">Using the trend to make product moments feel elevated and playful</span>
+          <div class="creator-name">Beauty & accessory brands</div>
+          <div class="creator-reason">Adapting the format to skincare or handbags instead of beverages</div>
         </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">CULTURAL CROSSOVER</span>
-        <span class="tag">HUMOUR</span>
-        <span class="tag">TRENDING AUDIO</span>
+      <div class="tags">
+        <span class="tag signal">Product-friendly</span>
+        <span class="tag">Comedy</span>
+        <span class="tag">Relatable</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="trend-number">IG-03</div>
+      <div class="trend-title">Harry Styles "Aperture"</div>
+      <div class="insight">Reflective, cinematic Reels using Harry Styles' new track for storytelling and recaps.</div>
+      <div class="detail">When a Harry Styles track drops, Instagram listens. "Aperture" has a natural build perfect for meaningful clips, soft transitions, and visually satisfying moments. The trend leans into mood over punchlines. It works for personal storytelling and clean brand visuals—polished without trying too hard.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
+        <div class="creator-entry">
+          <div class="creator-name">Lifestyle storytellers</div>
+          <div class="creator-reason">Using the audio for day-in-the-life montages with emotional beats</div>
+        </div>
+        <div class="creator-entry">
+          <div class="creator-name">Brand accounts</div>
+          <div class="creator-reason">Pairing the track with product reveals or brand journey moments</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Music-led</span>
+        <span class="tag signal">Cinematic</span>
+        <span class="tag">Harry Styles</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<section id="linkedin">
+<section id="linkedin" class="linkedin">
   <div class="section-header">
-    <div class="section-label" style="color: #4a9eed;">LinkedIn</div>
-    <div class="section-title">Depth score beats vanity metrics</div>
+    <div class="platform-label linkedin-label">Platform</div>
+    <div class="section-title">LinkedIn</div>
   </div>
+  
   <div class="card-grid">
     
-    <div class="card" style="border-left-color: #4a9eed;">
-      <div class="card-number" style="color: #4a9eed;">LI-01</div>
-      <div class="card-title">Carousel documents dominate engagement</div>
-      <div class="card-insight">LinkedIn carousels boast 45.85% engagement rate and 791+ average interactions — the highest-performing format on the platform.</div>
-      <div class="card-detail">Carousels increase dwell time as users swipe through multi-page PDFs, which the algorithm interprets as strong engagement signals. They work for repurposing blog posts, creating swipe-through storytelling, or designing specifically for the extended format.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #4a9eed;">DOING IT WELL</div>
+    <div class="card">
+      <div class="trend-number">LI-01</div>
+      <div class="trend-title">Carousel Documents Dominate</div>
+      <div class="insight">PDF-style carousel posts achieve 45.85% engagement rate—the highest of any format on LinkedIn.</div>
+      <div class="detail">Carousels increase dwell time as users swipe through slides. The algorithm loves this. They're algorithmic gold for presenting frameworks, checklists, step-by-step guides, and repurposed blog content. Real estate agents and financial advisors use them brilliantly for market trends and investment breakdowns. Carousels keep users on-platform longer than any other post type.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
         <div class="creator-entry">
-          <span class="creator-name">IKEA</span> — 
-          <span class="creator-reason">Used extended carousel layout for creative timeline celebrating meatball anniversary</span>
+          <div class="creator-name">B2B marketers & consultants</div>
+          <div class="creator-reason">Turning blog posts into swipe-through visual stories with tension and reveals</div>
         </div>
         <div class="creator-entry">
-          <span class="creator-name">B2B SaaS companies</span> — 
-          <span class="creator-reason">Breaking down product features or customer stories across slides</span>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="tag signal">HIGHEST ROI</span>
-        <span class="tag">DWELL TIME</span>
-        <span class="tag">NATIVE FORMAT</span>
-      </div>
-    </div>
-
-    <div class="card" style="border-left-color: #4a9eed;">
-      <div class="card-number" style="color: #4a9eed;">LI-02</div>
-      <div class="card-title">Personal profiles outperform company pages 5x</div>
-      <div class="card-insight">Personal profiles get 2.75x more impressions and 5x more engagement than company pages — the algorithm prioritizes human-to-human connection.</div>
-      <div class="card-detail">Authentic employee voices outperform corporate content by 561%. Personal profiles dominate 65% of total feed allocation while company pages get just 5%. Brands need to activate leadership and employee personal profiles rather than funneling resources into polished corporate posts.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #4a9eed;">DOING IT WELL</div>
-        <div class="creator-entry">
-          <span class="creator-name">Founders & executives</span> — 
-          <span class="creator-reason">Sharing personal insights and behind-the-scenes to humanize brands</span>
-        </div>
-        <div class="creator-entry">
-          <span class="creator-name">Employee advocacy programs</span> — 
-          <span class="creator-reason">Amplifying reach through team members' authentic voices</span>
+          <div class="creator-name">Thought leaders</div>
+          <div class="creator-reason">Using carousels for industry trend analyses and original frameworks</div>
         </div>
       </div>
-      <div class="card-tags">
-        <span class="tag signal">ALGORITHM SHIFT</span>
-        <span class="tag">PERSONAL BRAND</span>
-        <span class="tag">REACH MULTIPLIER</span>
+      <div class="tags">
+        <span class="tag signal">Engagement driver</span>
+        <span class="tag">Carousels</span>
+        <span class="tag">Dwell time</span>
       </div>
     </div>
 
-    <div class="card" style="border-left-color: #4a9eed;">
-      <div class="card-number" style="color: #4a9eed;">LI-03</div>
-      <div class="card-title">Native video under 90 seconds</div>
-      <div class="card-insight">Native videos under 90 seconds with captions and strong hooks deliver 5.5% engagement rates — highest of all content types.</div>
-      <div class="card-detail">LinkedIn is pushing video harder in 2026 to compete with TikTok-style consumption. The platform wants to become a destination for quick valuable video, not just text posts. Video views grew 36% year-over-year and creation is growing 2x faster than other post types.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #4a9eed;">DOING IT WELL</div>
+    <div class="card">
+      <div class="trend-number">LI-02</div>
+      <div class="trend-title">Comment-Driven Lead Magnets</div>
+      <div class="insight">Posts offering templates or guides in exchange for a keyword comment are spiking engagement.</div>
+      <div class="detail">The format is simple: "Comment 'Ads' for my free Facebook Ads template." The algorithm sees engagement spike, pushing the post to more feeds. The poster expands their network with people who want what they're offering. LinkedIn interactions increased 24% and clicks 28% in 2025, making this tactic increasingly effective. It works on multiple levels: algorithmic boost + qualified lead capture.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
         <div class="creator-entry">
-          <span class="creator-name">AJ Eckstein</span> — 
-          <span class="creator-reason">Encourages engagement by inviting viewers to "drop a comment below"</span>
+          <div class="creator-name">Marketing consultants</div>
+          <div class="creator-reason">Offering templates, frameworks, or checklists with clear keyword CTAs</div>
         </div>
         <div class="creator-entry">
-          <span class="creator-name">Recruiters & coaches</span> — 
-          <span class="creator-reason">60-second tips on resumes, interviews, or career advice with clear CTAs</span>
+          <div class="creator-name">Coaches & service providers</div>
+          <div class="creator-reason">Using the format to build email lists and qualify inbound interest</div>
         </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">SHORT-FORM</span>
-        <span class="tag signal">PLATFORM PRIORITY</span>
-        <span class="tag">NATIVE WINS</span>
+      <div class="tags">
+        <span class="tag signal">Lead gen</span>
+        <span class="tag">Interactive</span>
+        <span class="tag">Engagement farming</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="trend-number">LI-03</div>
+      <div class="trend-title">Authentic Video Over Polish</div>
+      <div class="insight">Native videos under 90 seconds with captions and strong hooks deliver 5.5% engagement rates.</div>
+      <div class="detail">LinkedIn video views grew 36% year-over-year. But over-produced corporate videos underperform—audiences see them as ads. Raw, unscripted content that feels human drives greater trust. A CEO talking into their phone about a client meeting lesson crushes a $5K polished promo. The platform rewards personality-led clips that feel spontaneous. Video is table stakes in 2026, but authenticity is the differentiator.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
+        <div class="creator-entry">
+          <div class="creator-name">Founders & CEOs</div>
+          <div class="creator-reason">Smartphone-shot clips sharing lessons learned, no fancy editing</div>
+        </div>
+        <div class="creator-entry">
+          <div class="creator-name">B2B companies</div>
+          <div class="creator-reason">Employee-led videos explaining complex topics in plain language</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Video</span>
+        <span class="tag signal">Authenticity</span>
+        <span class="tag">Founder-led</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<section id="youtube">
+<section id="youtube" class="youtube">
   <div class="section-header">
-    <div class="section-label" style="color: #e84040;">YouTube</div>
-    <div class="section-title">TV-quality storytelling + Shorts discovery</div>
+    <div class="platform-label youtube-label">Platform</div>
+    <div class="section-title">YouTube</div>
   </div>
+  
   <div class="card-grid">
     
-    <div class="card" style="border-left-color: #e84040;">
-      <div class="card-number" style="color: #e84040;">YT-01</div>
-      <div class="card-title">Episodic series with TV production values</div>
-      <div class="card-insight">Creators are building serialized shows with recurring formats — turning channels into digital franchises that keep audiences coming back.</div>
-      <div class="card-detail">With more viewers watching YouTube on TV, episodic documentary-style content appeals to those seeking high-production value and immersive storytelling. Random one-off clips are table stakes; brands seeing results build recurring formats and series.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #e84040;">DOING IT WELL</div>
+    <div class="card">
+      <div class="trend-number">YT-01</div>
+      <div class="trend-title">TV-Style Serialized Content</div>
+      <div class="insight">Creators are embracing episodic, TV-style formats with recurring themes and structured arcs.</div>
+      <div class="detail">YouTube's shift to living-room viewing (CTV) is driving demand for binge-worthy series. Creators like Druski launched "Coulda Been House," a Big Brother-style reality show under 10 episodes—familiar structure, creator chaos. Glitch launched "Glitch Direct," a behind-the-scenes series pulling fans into the production pipeline. Viewers prefer channels offering structured arcs and deeper value over one-offs.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
         <div class="creator-entry">
-          <span class="creator-name">Hot Ones (First We Feast)</span> — 
-          <span class="creator-reason">Interview series with consistent format that became appointment viewing</span>
+          <div class="creator-name">Druski (@druski)</div>
+          <div class="creator-reason">Created "Coulda Been House" and "Coulda Been Love" mini-series with reality TV format</div>
         </div>
         <div class="creator-entry">
-          <span class="creator-name">Druski (Coulda Been House)</span> — 
-          <span class="creator-reason">Reality TV format reimagined for YouTube with limited series structure</span>
-        </div>
-      </div>
-      <div class="card-tags">
-        <span class="tag signal">CTV GROWTH</span>
-        <span class="tag">BINGE-WORTHY</span>
-        <span class="tag">LOYALTY</span>
-      </div>
-    </div>
-
-    <div class="card" style="border-left-color: #e84040;">
-      <div class="card-number" style="color: #e84040;">YT-02</div>
-      <div class="card-title">Shorts as trailers for long-form</div>
-      <div class="card-insight">YouTube Shorts get 90B+ views daily but increasingly act as discovery sparks that direct viewers to deeper long-form content.</div>
-      <div class="card-detail">The algorithm is intentionally linking formats: Shorts dominate discovery and help reach new audiences quickly, while long-form is where relationships and loyalty are built. Creators use Shorts as trailers to tease longer videos and keep conversation going.</div>
-      <div class="card-creators">
-        <div class="creators-label" style="color: #e84040;">DOING IT WELL</div>
-        <div class="creator-entry">
-          <span class="creator-name">Educational channels</span> — 
-          <span class="creator-reason">Using quick Shorts to hook viewers then directing to full tutorials</span>
-        </div>
-        <div class="creator-entry">
-          <span class="creator-name">Commentary creators</span> — 
-          <span class="creator-reason">Teasing hot takes in Shorts with "full video in bio" strategy</span>
+          <div class="creator-name">Glitch Productions</div>
+          <div class="creator-reason">"Glitch Direct" brings fans behind the scenes with transparent vlog-style updates</div>
         </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">MULTI-FORMAT</span>
-        <span class="tag signal">DISCOVERY ENGINE</span>
-        <span class="tag">FUNNEL</span>
+      <div class="tags">
+        <span class="tag signal">Serialized</span>
+        <span class="tag">CTV</span>
+        <span class="tag">Binge-worthy</span>
       </div>
     </div>
 
-    <div class="card" style="border-left-color: #e84040;">
-      <div class="card-number" style="color: #e84040;">YT-03</div>
-      <div class="card-title">Raw authenticity over polish</div>
-      <div class="card-insight">Over-produced videos now often underperform — audiences crave content that feels raw, unscripted, and human for greater trust and engagement.</div>
-      <div class="card-detail">Field updates, genuine conversations, and behind-the-scenes moments drive more trust than expensive production. This aligns with broader 2026 shift toward sincerity and substance over performative perfection across all platforms
+    <div class="card">
+      <div class="trend-number">YT-02</div>
+      <div class="trend-title">Authentic > Polished</div>
+      <div class="insight">Creators are ditching highly-produced videos for unfiltered, sincere content with simpler thumbnails.</div>
+      <div class="detail">Thumbnails are getting simpler, fancy edits are disappearing, and storylines have a relaxed pace. It's about creating intimacy with viewers. Bodybuilder Sam Sulek and Dry Creek Wrangler School post uncut videos sharing life lessons. The shift is toward genuine connection over production value. Audiences reward creators who feel real, not scripted.</div>
+      <div class="creators-panel">
+        <div class="creators-label">DOING IT WELL</div>
+        <div class="creator-entry">
+          <div class="creator-name">Sam Sulek</div>
+          <div class="creator-reason">Raw, unedited workout videos with no script—just authentic commentary</div>
+        </div>
+        <div class="creator-entry">
+          <div class="creator-name">Dry Creek Wrangler School</div>
+          <div class="creator-reason">Uncut life lesson videos, pivoting from horse content to sincere storytelling</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Authenticity</span>
+        <span class="tag">Lo-fi</span>
+        <span class="tag">Intimacy</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="trend-number">YT-03</div>
+      <div class="trend-title">Shorts as Discovery Engine</div>
+      <div class="insight">YouTube Shorts receive 90 billion views/day
