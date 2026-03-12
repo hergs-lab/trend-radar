@@ -207,6 +207,16 @@ The "Social Trend Radar" heading in the header must be wrapped in an anchor tag
 linking to /trend-radar/ so it acts as a home link. Style it with no underline,
 inheriting the heading colour.
 
+### Page completeness
+
+The page MUST include all of the following — do not omit any:
+1. Brand bar
+2. Header with linked headline
+3. Nav bar (TikTok, Instagram, LinkedIn, YouTube, Archive)
+4. All four platform sections with 3 cards each
+5. Enduring Trends section (the cream-background strip before the footer)
+6. Footer with sources
+
 ## Output
 
 CRITICAL: Return ONLY the raw HTML. Absolutely nothing before <!DOCTYPE html> —
@@ -225,7 +235,7 @@ def generate(date_str: str) -> str:
 
     message = client.messages.create(
         model="claude-sonnet-4-5",
-        max_tokens=8000,
+        max_tokens=16000,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{"role": "user", "content": build_prompt(date_str)}],
     )
