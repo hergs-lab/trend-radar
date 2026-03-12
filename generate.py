@@ -193,6 +193,14 @@ CSS for enduring section (include in the <style> block):
   .enduring-momentum.plateaued {{ background: rgba(8,80,161,0.08); color: #0850A1; }}
   .enduring-momentum.declining {{ background: rgba(78,90,95,0.1); color: #4E5A5F; }}
 
+### Nav bar
+
+The nav bar must contain these links in this order:
+TikTok | Instagram | LinkedIn | YouTube | Archive
+
+The Archive link must point to: /trend-radar/archive.html
+Style it identically to the other nav links.
+
 ## Output
 
 Return ONLY the complete HTML. Do not include any explanation, markdown fences,
@@ -228,19 +236,157 @@ def generate(date_str: str) -> str:
     return html.strip()
 
 
+# ── Archive index builder ─────────────────────────────────────────────────────
+
+def build_archive(docs_dir: str) -> str:
+    """Scan docs/ for dated HTML files and build a simple archive index page."""
+    import re
+
+    dated_files = []
+    for fname in sorted(os.listdir(docs_dir), reverse=True):
+        if re.match(r"^\d{4}-\d{2}-\d{2}\.html$", fname):
+            date_str = fname.replace(".html", "")
+            try:
+                dt = datetime.strptime(date_str, "%Y-%m-%d")
+                label = dt.strftime("%-d %B %Y")  # e.g. "17 March 2026"
+            except ValueError:
+                label = date_str
+            dated_files.append((date_str, label, fname))
+
+    rows = ""
+    for date_str, label, fname in dated_files:
+        rows += f"""
+        <a class="archive-row" href="/trend-radar/{fname}">
+          <span class="archive-date">{label}</span>
+          <span class="archive-arrow">→</span>
+        </a>"""
+
+    if not rows:
+        rows = '<p class="archive-empty">No archived issues yet. Check back after the first Monday run.</p>'
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Trend Radar — Archive</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+    background: #F2ECE7;
+    color: #041C2C;
+    min-height: 100vh;
+  }}
+  .brand-bar {{
+    background: #041C2C;
+    height: 5px;
+    border-bottom: 2px solid #188838;
+  }}
+  header {{
+    padding: 52px 80px 36px;
+    background: #F2ECE7;
+    border-bottom: 1px solid #d4ccc6;
+  }}
+  .header-label {{
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #188838;
+    margin-bottom: 12px;
+  }}
+  .header-title {{
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700;
+    color: #041C2C;
+    line-height: 1;
+  }}
+  .header-sub {{
+    font-size: 14px;
+    color: #4E5A5F;
+    margin-top: 10px;
+  }}
+  .header-sub a {{
+    color: #0850A1;
+    text-decoration: none;
+  }}
+  .header-sub a:hover {{ text-decoration: underline; }}
+  main {{
+    max-width: 700px;
+    margin: 52px auto;
+    padding: 0 80px;
+  }}
+  .archive-row {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: #ffffff;
+    border: 1px solid #d4ccc6;
+    margin-bottom: 2px;
+    text-decoration: none;
+    color: #041C2C;
+    transition: background 0.15s;
+  }}
+  .archive-row:hover {{ background: #041C2C; color: #ffffff; }}
+  .archive-date {{ font-size: 15px; font-weight: 700; }}
+  .archive-arrow {{ font-size: 18px; color: #188838; }}
+  .archive-empty {{ color: #4E5A5F; font-size: 14px; padding: 24px 0; }}
+  footer {{
+    text-align: center;
+    padding: 40px 80px;
+    font-size: 11px;
+    color: #4E5A5F;
+    border-top: 1px solid #d4ccc6;
+    margin-top: 80px;
+  }}
+  @media (max-width: 600px) {{
+    header, main, footer {{ padding-left: 20px; padding-right: 20px; }}
+  }}
+</style>
+</head>
+<body>
+<div class="brand-bar"></div>
+<header>
+  <div class="header-label">City of Sydney — Digital Content Team</div>
+  <div class="header-title">Trend Radar<br>Archive</div>
+  <div class="header-sub">
+    <a href="/trend-radar/">← Current issue</a>
+  </div>
+</header>
+<main>
+  {rows}
+</main>
+<footer>City of Sydney Social Trend Radar — generated weekly by Claude</footer>
+</body>
+</html>"""
+
+
 # ── Write output ──────────────────────────────────────────────────────────────
 
 def main():
     date_str = datetime.now().strftime("%Y-%m-%d")
     html = generate(date_str)
 
-    # Write to docs/index.html so GitHub Pages serves it at the root URL
     os.makedirs("docs", exist_ok=True)
-    output_path = "docs/index.html"
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(html)
 
-    print(f"Written to {output_path} ({len(html):,} chars)")
+    # 1. Save dated archive copy
+    dated_path = f"docs/{date_str}.html"
+    with open(dated_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Written archive copy to {dated_path}")
+
+    # 2. Overwrite index.html with current week
+    with open("docs/index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Written to docs/index.html ({len(html):,} chars)")
+
+    # 3. Regenerate archive index
+    archive_html = build_archive("docs")
+    with open("docs/archive.html", "w", encoding="utf-8") as f:
+        f.write(archive_html)
+    print("Written docs/archive.html")
 
 
 if __name__ == "__main__":
