@@ -201,10 +201,18 @@ TikTok | Instagram | LinkedIn | YouTube | Archive
 The Archive link must point to: /trend-radar/archive.html
 Style it identically to the other nav links.
 
+### Headline link
+
+The "Social Trend Radar" heading in the header must be wrapped in an anchor tag
+linking to /trend-radar/ so it acts as a home link. Style it with no underline,
+inheriting the heading colour.
+
 ## Output
 
-Return ONLY the complete HTML. Do not include any explanation, markdown fences,
-or text before or after the HTML. Start with <!DOCTYPE html> and end with </html>.
+CRITICAL: Return ONLY the raw HTML. Absolutely nothing before <!DOCTYPE html> —
+no commentary, no "here is the file", no "I've researched...", no explanation of
+any kind. The very first character of your response must be < and the very last
+must be >. Any text outside the HTML tags will break the page.
 """.strip()
 
 
@@ -232,6 +240,10 @@ def generate(date_str: str) -> str:
     if html.startswith("```"):
         html = html.split("\n", 1)[1]
         html = html.rsplit("```", 1)[0]
+
+    # Strip any prose before the DOCTYPE — belt and braces
+    if "<!DOCTYPE" in html:
+        html = html[html.index("<!DOCTYPE"):]
 
     return html.strip()
 
