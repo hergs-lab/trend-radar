@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Trend Radar — Week of 2026-10-18</title>
+<style>
+:root {
+  --bg: #041C2C;
+  --surface: #0a2a3d;
+  --surface2: #0f3350;
+  --border: #1a3d52;
+  --text: #ffffff;
+  --muted: #7a9ab0;
+  --soft: #a8bfcc;
+  --cos-blue: #0850A1;
+  --cos-green: #188838;
+  --cos-red: #B00020;
+  --cos-light: #F2ECE7;
+  --accent: #188838;
+  --tiktok: #ff2d55;
+  --instagram: #e1a84a;
+  --linkedin: #4a9eed;
+  --youtube: #e84040;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.brand-bar {
+  height: 5px;
+  background: var(--bg);
+  border-bottom: 2px solid var(--accent);
+}
+
+header {
+  padding: 48px 80px 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.header-title:hover {
+  opacity: 0.85;
+}
+
+.header-date {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.platform-dots {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  padding: 16px 80px;
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+nav a {
+  color: var(--soft);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  margin-right: 32px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--text);
+}
+
+section {
+  padding: 64px 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: var(--surface);
+  border-left: 3px solid;
+  padding: 28px;
+  border-radius: 2px;
+  transition: all 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+.card:hover {
+  background: var(--surface2);
+  transform: translateY(-2px);
+}
+
+.card-number {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.card-insight {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.card-detail {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.creators-panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.creators-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.creator-entry {
+  margin-bottom: 10px;
+  font-size: 12.5px;
+}
+
+.creator-entry:last-child {
+  margin-bottom: 0;
+}
+
+.creator-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.creator-reason {
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.05);
+  color: var(--soft);
+}
+
+.tag.signal {
+  background: rgba(24,136,56,0.15);
+  color: var(--accent);
+}
+
+.enduring-section {
+  background: var(--cos-light);
+  padding: 52px 80px;
+  border-top: 1px solid #d4ccc6;
+}
+
+.enduring-header { 
+  margin-bottom: 32px; 
+}
+
+.enduring-label {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.enduring-title {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--bg);
+  margin-top: 4px;
+}
+
+.enduring-subtitle {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #4E5A5F;
+  margin-top: 4px;
+}
+
+.enduring-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  background: #d4ccc6;
+  border: 1px solid #d4ccc6;
+}
+
+.enduring-item {
+  background: #ffffff;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enduring-name {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--bg);
+}
+
+.enduring-rationale {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 12.5px;
+  color: #4E5A5F;
+  line-height: 1.5;
+}
+
+.enduring-momentum {
+  margin-top: 6px;
+  display: inline-block;
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  align-self: flex-start;
+}
+
+.enduring-momentum.growing {
+  background: rgba(24,136,56,0.1);
+  color: var(--accent);
+}
+
+.enduring-momentum.plateaued {
+  background: rgba(8,80,161,0.08);
+  color: var(--cos-blue);
+}
+
+.enduring-momentum.declining {
+  background: rgba(78,90,95,0.1);
+  color: #4E5A5F;
+}
+
+footer {
+  padding: 32px 80px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.footer-heading {
+  font-weight: 700;
+  color: var(--soft);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.scroll-hint {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 1;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+}
+
+@media (max-width: 900px) {
+  header, nav, section, footer, .enduring-section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-title {
+    font-size: 32px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  nav a {
+    margin-right: 16px;
+    font-size: 13px;
+  }
+
+  .enduring-strip {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="brand-bar"></div>
+
+<header>
+  <a href="/trend-radar/" class="header-title">Social Trend Radar</a>
+  <div class="header-date">Week of 2026-10-18</div>
+  <div class="platform-dots">
+    <div class="dot" style="background: var(--tiktok);"></div>
+    <div class="dot" style="background: var(--instagram);"></div>
+    <div class="dot" style="background: var(--linkedin);"></div>
+    <div class="dot" style="background: var(--youtube);"></div>
+  </div>
+</header>
+
+<nav>
+  <a href="#tiktok">TikTok</a>
+  <a href="#instagram">Instagram</a>
+  <a href="#linkedin">LinkedIn</a>
+  <a href="#youtube">YouTube</a>
+  <a href="/trend-radar/archive.html">Archive</a>
+</nav>
+
+<section id="tiktok">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--tiktok);">Platform 01</div>
+    <div class="section-title" style="color: var(--tiktok);">TikTok</div>
+  </div>
+  <div class="card-grid">
+    
+    <div class="card" style="border-left-color: var(--tiktok);">
+      <div class="card-number" style="color: var(--tiktok);">TK-01</div>
+      <div class="card-title">Halloween Costume Reveals on "Ramalama"</div>
+      <div class="card-insight">Low camera angle stalking toward the lens, then a dramatic pull-back to show the full costume.</div>
+      <div class="card-detail">The format uses Róisín Murphy's "Ramalama (Bang Bang)" and creates suspense through a simple two-shot structure. No text, no talking — just feet, then full reveal. It's seasonal but low-friction, requiring one prop and zero editing skills.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--tiktok);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Solo costume creators</span>
+          <span class="creator-reason">— using the camera-to-legs framing to build anticipation before the reveal</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Group coordination videos</span>
+          <span class="creator-reason">— coordinating multiple characters in sequence with the same audio beat</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Seasonal Peak</span>
+        <span class="tag">Low Production</span>
+        <span class="tag">Audio-Driven</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--tiktok);">
+      <div class="card-number" style="color: var(--tiktok);">TK-02</div>
+      <div class="card-title">Text-Led Conversational Setups</div>
+      <div class="card-insight">A readable on-screen text hook frames the whole video, letting creators reuse structure while swapping the subject.</div>
+      <div class="card-detail">TikTok's October content clusters around text-first formats where the message does the heavy lifting. Creators layer relatable confessions, observations, or questions over simple B-roll or direct-to-camera clips. The format is replicable because it separates setup from execution.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--tiktok);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Lifestyle and humor accounts</span>
+          <span class="creator-reason">— using hyper-specific observations that feel like inside jokes</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Small business owners</span>
+          <span class="creator-reason">— turning customer objections or common questions into text-led explainers</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">High Flexibility</span>
+        <span class="tag">Text Hook</span>
+        <span class="tag">Reusable</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--tiktok);">
+      <div class="card-number" style="color: var(--tiktok);">TK-03</div>
+      <div class="card-title">Approachable Dance & Mood Clips</div>
+      <div class="card-insight">Easy-to-replicate dances and seasonal mood montages keep participation open to casual creators.</div>
+      <div class="card-detail">October audio includes "Be OK" by Ingrid Michaelson and autumn-themed instrumentals paired with simple choreography or lifestyle clips. The moves are accessible, the aesthetic is cozy, and the format rewards consistency over complexity. It's comfort content designed for high replicability.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--tiktok);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Fall lifestyle creators</span>
+          <span class="creator-reason">— pairing October audio with scenic walks, coffee shops, and seasonal routines</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Dance challenge participants</span>
+          <span class="creator-reason">— keeping choreography simple enough for broad participation</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Low Barrier</span>
+        <span class="tag">Seasonal Audio</span>
+        <span class="tag">Participation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="instagram">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--instagram);">Platform 02</div>
+    <div class="section-title" style="color: var(--instagram);">Instagram</div>
+  </div>
+  <div class="card-grid">
+    
+    <div class="card" style="border-left-color: var(--instagram);">
+      <div class="card-number" style="color: var(--instagram);">IG-01</div>
+      <div class="card-title">"Patient Zero" Wedding Day Edits</div>
+      <div class="card-insight">Taylor Swift's new track paired with dramatic wedding footage, treating the moment like a cinematic mic drop.</div>
+      <div class="card-detail">Creators cut first looks, spins, veils, or big reveals to the closing line of "Patient Zero," leveraging the song's horror-twist energy for emotional punch. Over 50,000 Reels have used this format. It works because it borrows cultural momentum from a fresh VMA debut and reframes personal milestones as main-character moments.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--instagram);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Wedding creators</span>
+          <span class="creator-reason">— timing the reveal to the beat drop for maximum emotional impact</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Beauty and transformation accounts</span>
+          <span class="creator-reason">— using the moody audio for before-and-after reveals beyond weddings</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">New Audio</span>
+        <span class="tag">Emotional Beat</span>
+        <span class="tag">High Engagement</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--instagram);">
+      <div class="card-number" style="color: var(--instagram);">IG-02</div>
+      <div class="card-title">Fast-Cut Outfit Transitions</div>
+      <div class="card-insight">8-15 rapid cuts in 30 seconds, synced to music beats, showcase a week of outfits with seamless repeated actions.</div>
+      <div class="card-detail">Fashion and lifestyle creators film the same simple movement (walking through a door, adjusting sunglasses) in multiple outfits, then cut between them to the beat. Consistent camera position makes each outfit change feel visually satisfying. The format is working because it delivers variety without complexity.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--instagram);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Fashion micro-influencers</span>
+          <span class="creator-reason">— maintaining strict camera consistency to make transitions feel effortless</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Fall wardrobe accounts</span>
+          <span class="creator-reason">— using seasonal October audio to anchor the visual rhythm</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Editing Trend</span>
+        <span class="tag">Fashion</span>
+        <span class="tag">Beat-Sync</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--instagram);">
+      <div class="card-number" style="color: var(--instagram);">IG-03</div>
+      <div class="card-title">Carousel Audio Posts: "Stop the Wedding"</div>
+      <div class="card-insight">Photo carousels with audio become Reels-eligible, expanding reach beyond followers through searchable confession formats.</div>
+      <div class="card-detail">Creators build carousels with text starting "Stop the wedding, but..." and finish with honest, often funny regrets (dress choice, decor, planning decisions). Adding Ashe's audio makes it surface in Reels feeds. It works because hindsight-as-confession is relatable, and audio carousels bridge static and video discovery.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--instagram);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Wedding industry accounts</span>
+          <span class="creator-reason">— keeping confessions light (decor, styling) rather than deeply personal</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Couples and lifestyle creators</span>
+          <span class="creator-reason">— balancing humor with real stories that invite comment-section connection</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Carousel Hack</span>
+        <span class="tag">Audio-Enabled</span>
+        <span class="tag signal">Reach Boost</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="linkedin">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--linkedin);">Platform 03</div>
+    <div class="section-title" style="color: var(--linkedin);">LinkedIn</div>
+  </div>
+  <div class="card-grid">
+    
+    <div class="card" style="border-left-color: var(--linkedin);">
+      <div class="card-number" style="color: var(--linkedin);">LI-01</div>
+      <div class="card-title">Document (Carousel) Posts Lead Engagement</div>
+      <div class="card-insight">Carousels now deliver 1.39x reach and 1.30x engagement, outperforming video for the first time in years.</div>
+      <div class="card-detail">LinkedIn's 2026 format hierarchy flipped. Documents (PDF carousels) moved to the top spot, with swiping behavior holding attention longer than video scroll. Among top 5% profiles, carousels achieve 1.72x reach. The format satisfies LinkedIn's new dwell-time focus while offering visual structure that static posts lack.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--linkedin);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">B2B thought leaders</span>
+          <span class="creator-reason">— using frameworks, step-by-step guides, and data visualizations in slide format</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Marketing agencies</span>
+          <span class="creator-reason">— repurposing case studies and insights into shareable carousel decks</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Format Shift</span>
+        <span class="tag">Dwell Time</span>
+        <span class="tag">Saves</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--linkedin);">
+      <div class="card-number" style="color: var(--linkedin);">LI-02</div>
+      <div class="card-title">Raw Behind-the-Scenes Video</div>
+      <div class="card-insight">Unpolished 3-6 minute horizontal clips explaining thought processes outperform polished thought-leadership posts.</div>
+      <div class="card-detail">LinkedIn's 2026 engagement spike (5.20% average, up 8% YoY) is driven partly by raw, authentic content. Creators post horizontal-format clips outlining frameworks or decision-making without heavy production. People are responding to simple, helpful information over performative expertise. The algorithm rewards substantive comments from professionals, not vanity metrics.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--linkedin);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Ivy Mullins (Born Social)</span>
+          <span class="creator-reason">— posting non-thought-leadership clips that outline work frameworks simply</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Founder and operator accounts</span>
+          <span class="creator-reason">— sharing real decision processes rather than polished takeaways</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Authenticity</span>
+        <span class="tag">Video</span>
+        <span class="tag">Expert Comments</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--linkedin);">
+      <div class="card-number" style="color: var(--linkedin);">LI-03</div>
+      <div class="card-title">Personal Profiles Over Company Pages</div>
+      <div class="card-insight">Personal profiles generate 2.60% engagement vs. 1.60% for company pages, with 5x higher interaction overall.</div>
+      <div class="card-detail">LinkedIn's 2026 data shows personal voices consistently outperform branded accounts. Company pages make up only 2% of what users see in their feed. The shift reflects LinkedIn's evolution into a content ecosystem where people follow people, not logos. Brands are now encouraging employee-generated content and founder-led posting instead of relying on the company page.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--linkedin);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Sales managers and customer success teams</span>
+          <span class="creator-reason">— sharing deal lessons and client stories from personal accounts</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Founder-led brands</span>
+          <span class="creator-reason">— posting from the CEO or founder profile rather than the company page</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Personal Brand</span>
+        <span class="tag">EGC</span>
+        <span class="tag">Trust</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="youtube">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--youtube);">Platform 04</div>
+    <div class="section-title" style="color: var(--youtube);">YouTube</div>
+  </div>
+  <div class="card-grid">
+    
+    <div class="card" style="border-left-color: var(--youtube);">
+      <div class="card-number" style="color: var(--youtube);">YT-01</div>
+      <div class="card-title">Shorts as Discovery Engine</div>
+      <div class="card-insight">Over 61% of organic views now come from the Shorts feed, with average watch time near 16 seconds.</div>
+      <div class="card-detail">YouTube Shorts reached 100 billion daily views in 2025 and continues to dominate discovery in 2026. Creators are opening with the problem, claim, or proof immediately — no branding or channel intros. The format works because it mirrors TikTok's scroll behavior while feeding into YouTube's longer-form ecosystem.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--youtube);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Educational micro-content creators</span>
+          <span class="creator-reason">— leading with the hook in the first 3 seconds, no preamble</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">DIY and tutorial channels</span>
+          <span class="creator-reason">— showing the payoff or transformation upfront before explaining steps</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">Primary Discovery</span>
+        <span class="tag">Under 60s</span>
+        <span class="tag">Hook First</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--youtube);">
+      <div class="card-number" style="color: var(--youtube);">YT-02</div>
+      <div class="card-title">Day-in-the-Life Mini Vlogs</div>
+      <div class="card-insight">Complete story arcs in under 60 seconds: context, motion, payoff.</div>
+      <div class="card-detail">Mini vlogs remain the default "comfort format" on YouTube Shorts. The structure is familiar across niches (creator life, student life, small business, gym routines) and works because it delivers a narrative arc fast. Viewers know what they're getting, and creators can replicate the format infinitely without reinventing the wheel.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--youtube);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">Small business owners</span>
+          <span class="creator-reason">— condensing a full workday into a 45-second narrative with clear stakes</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Student and lifestyle vloggers</span>
+          <span class="creator-reason">— using familiar rhythms (morning, work, evening) to create episodic comfort content</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Narrative Arc</span>
+        <span class="tag">Replicable</span>
+        <span class="tag">Comfort Content</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--youtube);">
+      <div class="card-number" style="color: var(--youtube);">YT-03</div>
+      <div class="card-title">High-Stakes Challenge Videos</div>
+      <div class="card-insight">Participation-led challenges and visible transformation stories lead October entertainment revenue at $589K estimated.</div>
+      <div class="card-detail">Challenge content dominates YouTube's trending entertainment category with 393M views across 64 videos in October. The format works through repeatable stakes, clear constraints, and visible outcomes. Philanthropy also entered the top 10 as a new breakout, showing demand for transformation narratives with real-world impact.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--youtube);">Doing it well</div>
+        <div class="creator-entry">
+          <span class="creator-name">MrBeast-style challenge creators</span>
+          <span class="creator-reason">— combining high production with clear rules and emotional stakes</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Philanthropy-focused channels</span>
+          <span class="creator-reason">— documenting visible transformation (village builds, community projects) with proof</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">High Revenue</span>
+        <span class="tag">Participation</span>
+        <span class="tag">Stakes</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="enduring-section">
+  <div class="enduring-header">
+    <div>
+      <div class="enduring-label">Always in the mix</div>
+      <div class="enduring-title">Enduring Trends</div>
+      <div class="enduring-subtitle">Not new — but still working. Durable formats worth keeping in your content mix.</div>
+    </div>
+  </div>
+  <div class="enduring-strip">
+    
+    <div class="enduring-item">
+      <div class="enduring-name">Short-Form Video Content</div>
+      <div class="enduring-rationale">Under 90 seconds, mobile-first, highest ROI across platforms. Still the #1 marketer priority in 2026.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">Educational Carousels</div>
+      <div class="enduring-rationale">Saves and shares run 3-5x higher than single images. Extended value in swipeable, scannable format.</div>
+      <span class="enduring-momentum plateaued">→ Plateaued</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">Behind-the-Scenes Content</div>
+      <div class="enduring-rationale">Raw, unpolished posts outperform high-production. Authenticity builds trust faster than polish in 2026.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">How-To Tutorials</div>
+      <div class="enduring-rationale">Drives saves, rewatches, and compounds through social search. Answers recurring questions indefinitely.</div>
+      <span class="enduring-momentum plateaued">→ Plateaued</span>
+    </div>
+
+    <div class="enduring-item">
+      <div class="enduring-name">User-Generated Content</div>
+      <div class="enduring-rationale">74% of shoppers convert from creator content. People trust people more than polished brand content.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-heading">Sources</div>
+  <div>Later, Sprout Social, Social Insider, New Engen, AuthoredUp, Metricool, Socialinsider, LinkedIn algorithm analysis (Zoomsphere), YouTube Shorts data (Teleprompter), Mean.ceo, Pepper Agency, Manychat, SocialBee, HubSpot Marketing, AnySocialMedia, platform newsrooms.</div>
+</footer>
+
+<div class="scroll-hint" id="scrollHint">Scroll ↓</div>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Hide scroll hint on scroll
+const scrollHint = document.getElementById('scrollHint');
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 200) {
+    scrollHint.classList.add('hidden');
+  }
+});
+</script>
+
+</body>
+</html>
