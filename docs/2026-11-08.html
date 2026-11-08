@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Trend Radar – Week of 2026-11-08 | City of Sydney Digital Content Team</title>
+<style>
+:root {
+  --bg: #041C2C;
+  --surface: #0a2a3d;
+  --surface2: #0f3350;
+  --border: #1a3d52;
+  --text: #ffffff;
+  --muted: #7a9ab0;
+  --soft: #a8bfcc;
+  --cos-blue: #0850A1;
+  --cos-green: #188838;
+  --cos-red: #B00020;
+  --cos-light: #F2ECE7;
+  --accent: #188838;
+  --tiktok: #ff2d55;
+  --instagram: #e1a84a;
+  --linkedin: #4a9eed;
+  --youtube: #e84040;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.brand-bar {
+  height: 5px;
+  background: #041C2C;
+  border-bottom: 2px solid var(--cos-green);
+}
+
+header {
+  padding: 60px 80px 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.header-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.header-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.platform-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.platform-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 80px;
+  z-index: 100;
+  display: flex;
+  gap: 32px;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+.section {
+  padding: 60px 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: var(--surface);
+  border-left: 3px solid;
+  padding: 24px;
+  transition: background 0.3s, transform 0.2s;
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  background: var(--surface2);
+  transform: translateY(-2px);
+}
+
+.card-number {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.card-insight {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-detail {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.creators-panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.creators-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+}
+
+.creator-entry {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.creator-entry:last-child {
+  margin-bottom: 0;
+}
+
+.creator-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.creator-reason {
+  color: var(--muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+}
+
+.tag.signal {
+  background: rgba(24,136,56,0.15);
+  color: var(--accent);
+}
+
+.enduring-section {
+  background: var(--cos-light);
+  padding: 52px 80px;
+  border-top: 1px solid #d4ccc6;
+}
+
+.enduring-header {
+  margin-bottom: 32px;
+}
+
+.enduring-label {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cos-green);
+}
+
+.enduring-title {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #041C2C;
+}
+
+.enduring-subtitle {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #4E5A5F;
+  margin-top: 4px;
+}
+
+.enduring-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  background: #d4ccc6;
+  border: 1px solid #d4ccc6;
+}
+
+.enduring-item {
+  background: #ffffff;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enduring-name {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #041C2C;
+}
+
+.enduring-rationale {
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 12.5px;
+  color: #4E5A5F;
+  line-height: 1.5;
+}
+
+.enduring-momentum {
+  margin-top: 6px;
+  display: inline-block;
+  font-family: 'Helvetica Now', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  align-self: flex-start;
+}
+
+.enduring-momentum.growing {
+  background: rgba(24,136,56,0.1);
+  color: var(--cos-green);
+}
+
+.enduring-momentum.plateaued {
+  background: rgba(8,80,161,0.08);
+  color: var(--cos-blue);
+}
+
+.enduring-momentum.declining {
+  background: rgba(78,90,95,0.1);
+  color: #4E5A5F;
+}
+
+footer {
+  padding: 40px 80px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.footer-heading {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  color: var(--soft);
+}
+
+.scroll-hint {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  opacity: 1;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+}
+
+@media (max-width: 900px) {
+  header {
+    padding: 40px 24px 24px;
+  }
+
+  nav {
+    padding: 12px 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .section {
+    padding: 40px 24px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .enduring-section {
+    padding: 40px 24px;
+  }
+
+  .enduring-strip {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding: 32px 24px;
+  }
+
+  .scroll-hint {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="brand-bar"></div>
+
+<header>
+  <h1 class="header-title"><a href="/trend-radar/">Social Trend Radar</a></h1>
+  <div class="header-subtitle">Week of 2026-11-08 · City of Sydney Digital Content Team</div>
+  <div class="platform-dots">
+    <div class="platform-dot" style="background: var(--tiktok);"></div>
+    <div class="platform-dot" style="background: var(--instagram);"></div>
+    <div class="platform-dot" style="background: var(--linkedin);"></div>
+    <div class="platform-dot" style="background: var(--youtube);"></div>
+  </div>
+</header>
+
+<nav>
+  <a href="#tiktok">TikTok</a>
+  <a href="#instagram">Instagram</a>
+  <a href="#linkedin">LinkedIn</a>
+  <a href="#youtube">YouTube</a>
+  <a href="/trend-radar/archive.html">Archive</a>
+</nav>
+
+<section class="section" id="tiktok">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--tiktok);">Platform 01</div>
+    <div class="section-title" style="color: var(--tiktok);">TikTok</div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card" style="border-left-color: var(--tiktok);">
+      <div class="card-number" style="color: var(--tiktok);">TK-01</div>
+      <div class="card-title">Tiny Text Reveal</div>
+      <div class="card-insight">Small, barely-visible text that zooms in to reveal the message rewards attention and creates curiosity-driven engagement.</div>
+      <div class="card-detail">Creators shrink text using platform tools, then film themselves approaching the camera as the text enlarges to readability. It's low-lift production with high rewatch value because viewers want to catch what they missed.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--tiktok);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Brand accounts (teasing offers)</span> –
+          <span class="creator-reason">Using it to reveal Black Friday discounts and product launches</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Personal brands (hot takes)</span> –
+          <span class="creator-reason">Delivering industry opinions that reward close attention</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">INTERACTIVE</span>
+        <span class="tag">LOW PRODUCTION</span>
+        <span class="tag">REWATCH DRIVER</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--tiktok);">
+      <div class="card-number" style="color: var(--tiktok);">TK-02</div>
+      <div class="card-title">Reverse Psychology Sell</div>
+      <div class="card-insight">Starting with "reasons why you don't need to..." then passionately listing reasons TO buy flips traditional sales messaging.</div>
+      <div class="card-detail">The format opens with text saying you don't need the product, then the creator appears to deliver a heartfelt (often sarcastic) case for it. Works because it acknowledges buyer skepticism while building desire through contrast.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--tiktok);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Beauty & skincare creators</span> –
+          <span class="creator-reason">Selling makeup restocks and lash care with playful contradiction</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">E-commerce brands</span> –
+          <span class="creator-reason">Driving cart conversions by acknowledging purchase hesitation</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">CONVERSION FOCUS</span>
+        <span class="tag">HUMOR</span>
+        <span class="tag">AUDIO TREND</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--tiktok);">
+      <div class="card-number" style="color: var(--tiktok);">TK-03</div>
+      <div class="card-title">Behind-the-Scenes Raw</div>
+      <div class="card-insight">Unfiltered, low-polish content showing real process and daily work is outperforming highly produced brand videos in 2026.</div>
+      <div class="card-detail">TikTok's algorithm shift toward authenticity means coulisses content, founder-led videos, and "day in the life" clips are earning higher engagement than polished ads. Small businesses and personal brands benefit most because this levels the production playing field.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--tiktok);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Small business founders</span> –
+          <span class="creator-reason">Showing packing orders, prepping inventory, real studio moments</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Creator economy accounts</span> –
+          <span class="creator-reason">Honest income breakdowns and workflow transparency</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">AUTHENTICITY</span>
+        <span class="tag">ALGORITHM FRIENDLY</span>
+        <span class="tag">FOUNDER-LED</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="instagram">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--instagram);">Platform 02</div>
+    <div class="section-title" style="color: var(--instagram);">Instagram</div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card" style="border-left-color: var(--instagram);">
+      <div class="card-number" style="color: var(--instagram);">IG-01</div>
+      <div class="card-title">Housewife Self-Made Anthem</div>
+      <div class="card-insight">Tate McRae's "Housewife" is being flipped into aspirational content showing the work that funds the dream life creators want.</div>
+      <div class="card-detail">The audio pairs with B-roll of work, lifestyle, or side hustles, with text like "I just wanna make a lot of money and..." followed by how they'd spend it. It's manifestation meets mood board, perfect for lifestyle and business creators showing both grind and goal.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--instagram);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Lifestyle creators</span> –
+          <span class="creator-reason">Pairing morning routines with financial goals and travel wishlists</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Business coaches</span> –
+          <span class="creator-reason">Showing client work that funds freedom-based lifestyles</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">TRENDING AUDIO</span>
+        <span class="tag">ASPIRATIONAL</span>
+        <span class="tag">DUO CHOREOGRAPHY</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--instagram);">
+      <div class="card-number" style="color: var(--instagram);">IG-02</div>
+      <div class="card-title">War Is Over (Tiny Wins)</div>
+      <div class="card-insight">John Lennon's "Happy Xmas (War Is Over)" is being used to celebrate small victories with text finishing "war is over..."</div>
+      <div class="card-detail">Creators add text reading "war is over." then finish the sentence with something they survived, won, or finally achieved—temps dropped enough for sweaters, client signed, peppermint drinks returned. It taps into seasonal relief and relatable micro-celebrations that drive saves and shares.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--instagram);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Seasonal lifestyle accounts</span> –
+          <span class="creator-reason">Marking fall milestones and cozy-season moments</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Freelance & founder accounts</span> –
+          <span class="creator-reason">Celebrating client wins and project completions</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">LICENSED AUDIO</span>
+        <span class="tag">RELATABLE</span>
+        <span class="tag signal">HOLIDAY SEASON</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--instagram);">
+      <div class="card-number" style="color: var(--instagram);">IG-03</div>
+      <div class="card-title">Carousel Saves Over Reels</div>
+      <div class="card-insight">Educational carousels are outperforming Reels on engagement and saves, delivering 3x more reach than single-image posts.</div>
+      <div class="card-detail">Instagram's algorithm rewards dwell time, and multi-slide carousels (especially educational, step-by-step, or opinion-led) keep users swiping. They're also saved more often than video, making them a high-leverage organic format for teams without video production capacity.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--instagram);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Marketing educators</span> –
+          <span class="creator-reason">Posting framework breakdowns and strategy templates</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Design & creative accounts</span> –
+          <span class="creator-reason">Sharing before-and-after transformations with process slides</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">HIGH SAVES</span>
+        <span class="tag">DWELL TIME</span>
+        <span class="tag">EDUCATIONAL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="linkedin">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--linkedin);">Platform 03</div>
+    <div class="section-title" style="color: var(--linkedin);">LinkedIn</div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card" style="border-left-color: var(--linkedin);">
+      <div class="card-number" style="color: var(--linkedin);">LI-01</div>
+      <div class="card-title">Document Carousels Dominate</div>
+      <div class="card-insight">PDF carousel posts are hitting 6.60% engagement rates—the highest of any LinkedIn format in 2026.</div>
+      <div class="card-detail">LinkedIn's algorithm prioritizes dwell time, and document posts force users to swipe through slides, signaling quality content. They outperform standard text and video by creating structured, save-worthy educational content that LinkedIn's professional audience actively seeks and shares.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--linkedin);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">B2B marketers & consultants</span> –
+          <span class="creator-reason">Sharing frameworks, playbooks, and case study breakdowns</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Startup founders</span> –
+          <span class="creator-reason">Posting data-driven insights and transparent business metrics</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">6.6% ENGAGEMENT</span>
+        <span class="tag">DWELL TIME</span>
+        <span class="tag">SAVE-WORTHY</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--linkedin);">
+      <div class="card-number" style="color: var(--linkedin);">LI-02</div>
+      <div class="card-title">Employee-Generated Content</div>
+      <div class="card-insight">Posts from employee personal profiles get 2x more engagement than company pages and drive 30% of brand engagement.</div>
+      <div class="card-detail">LinkedIn's algorithm favors personal accounts over corporate pages, and audiences connect more with real voices than brand messaging. Employee advocacy programs that provide content ideas (not scripts) and recognize participation are scaling reach without ad spend.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--linkedin);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Tech companies</span> –
+          <span class="creator-reason">Engineers and product managers sharing build stories and learnings</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Professional services firms</span> –
+          <span class="creator-reason">Partners posting client insights and industry commentary</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">2X ENGAGEMENT</span>
+        <span class="tag">EMPLOYEE ADVOCACY</span>
+        <span class="tag">ORGANIC REACH</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--linkedin);">
+      <div class="card-number" style="color: var(--linkedin);">LI-03</div>
+      <div class="card-title">Comment-First Strategy</div>
+      <div class="card-insight">Comments carry 8x more algorithmic weight than likes, and commenting on high-visibility posts before sharing your own content boosts reach.</div>
+      <div class="card-detail">The algorithm tracks comment thread engagement and reply depth. Creators and brands are strategically commenting on trending posts in their niche to build visibility before publishing, then sparking discussion in their own posts by asking direct questions that invite detailed responses.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--linkedin);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Thought leaders & consultants</span> –
+          <span class="creator-reason">Engaging in comment threads before posting original takes</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">B2B SaaS founders</span> –
+          <span class="creator-reason">Asking questions that generate 77% more comments than average posts</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">8X WEIGHT</span>
+        <span class="tag">VISIBILITY HACK</span>
+        <span class="tag">DISCUSSION-DRIVEN</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="youtube">
+  <div class="section-header">
+    <div class="section-label" style="color: var(--youtube);">Platform 04</div>
+    <div class="section-title" style="color: var(--youtube);">YouTube</div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card" style="border-left-color: var(--youtube);">
+      <div class="card-number" style="color: var(--youtube);">YT-01</div>
+      <div class="card-title">Non-Verbal POV Shorts</div>
+      <div class="card-insight">Wordless, visual-driven Shorts that rely on physical storytelling work across languages and drive global reach.</div>
+      <div class="card-detail">Creators like Daniel LaBelle demonstrate scenarios entirely through movement and expression—no dialogue, just relatable situations told visually. This format travels well internationally, requires no voiceover production, and leverages YouTube's Shorts algorithm which prioritizes retention over verbosity.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--youtube);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Daniel LaBelle</span> –
+          <span class="creator-reason">Physical comedy POV scenarios with universal visual appeal</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Lifestyle & DIY creators</span> –
+          <span class="creator-reason">Showing transformations and processes without narration</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">GLOBAL REACH</span>
+        <span class="tag">SHORTS OPTIMIZED</span>
+        <span class="tag">LOW PRODUCTION</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--youtube);">
+      <div class="card-number" style="color: var(--youtube);">YT-02</div>
+      <div class="card-title">Podcast Clips as Shorts</div>
+      <div class="card-insight">Video podcast episodes are being clipped into 30-60 second Shorts that drive traffic back to full episodes and build returning audiences.</div>
+      <div class="card-detail">One long-form recording generates dozens of short clips optimized for discovery. Creators are pulling highlight moments, controversial takes, or useful tips and formatting them as Shorts with captions, expanding reach beyond their subscriber base and funneling viewers to the full show.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--youtube);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">Business & interview podcasts</span> –
+          <span class="creator-reason">Clipping standout quotes and tactical advice into discoverable Shorts</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Niche expert shows</span> –
+          <span class="creator-reason">Using Shorts Series to organize connected episodes</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">REPURPOSING</span>
+        <span class="tag signal">SHORTS SERIES</span>
+        <span class="tag">FUNNEL STRATEGY</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color: var(--youtube);">
+      <div class="card-number" style="color: var(--youtube);">YT-03</div>
+      <div class="card-title">Mystery Investigation Format</div>
+      <div class="card-insight">Mystery investigation content leads YouTube entertainment trends with 433M views in November, driven by narrative arc and repeatable structure.</div>
+      <div class="card-detail">Videos that follow a question, investigation, and resolution structure keep viewers watching through strong narrative pacing. The format rewards curiosity gaps and clear storytelling, making it ideal for educational explainers, true crime, urban exploration, or product testing that unfolds as discovery.</div>
+      <div class="creators-panel">
+        <div class="creators-label" style="color: var(--youtube);">DOING IT WELL</div>
+        <div class="creator-entry">
+          <span class="creator-name">True crime & unsolved channels</span> –
+          <span class="creator-reason">Structuring episodes around investigation and reveal</span>
+        </div>
+        <div class="creator-entry">
+          <span class="creator-name">Product review & testing creators</span> –
+          <span class="creator-reason">Framing reviews as questions with investigative pacing</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag signal">433M VIEWS</span>
+        <span class="tag">NARRATIVE ARC</span>
+        <span class="tag">HIGH RETENTION</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enduring-section">
+  <div class="enduring-header">
+    <div>
+      <div class="enduring-label">Always in the mix</div>
+      <div class="enduring-title">Enduring Trends</div>
+      <div class="enduring-subtitle">Not new — but still working. Durable formats worth keeping in your content mix.</div>
+    </div>
+  </div>
+  <div class="enduring-strip">
+    <div class="enduring-item">
+      <div class="enduring-name">Short-Form Educational Video</div>
+      <div class="enduring-rationale">Quick how-to and explainer videos continue driving saves, shares, and searchability across all platforms.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+    <div class="enduring-item">
+      <div class="enduring-name">User-Generated Content</div>
+      <div class="enduring-rationale">Customer testimonials and authentic reviews remain the most cost-effective trust-building content brands can post.</div>
+      <span class="enduring-momentum plateaued">→ Plateaued</span>
+    </div>
+    <div class="enduring-item">
+      <div class="enduring-name">Behind-the-Scenes Content</div>
+      <div class="enduring-rationale">Showing real process, team culture, and unfiltered moments continues to outperform polished brand content.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+    <div class="enduring-item">
+      <div class="enduring-name">Episodic Series Format</div>
+      <div class="enduring-rationale">Recurring content series build returning audiences and compound engagement better than one-off viral attempts.</div>
+      <span class="enduring-momentum growing">↑ Still growing</span>
+    </div>
+    <div class="enduring-item">
+      <div class="enduring-name">Trending Audio Participation</div>
+      <div class="enduring-rationale">Jumping on platform-native audio trends remains a reliable way to access algorithmic distribution.</div>
+      <span class="enduring-momentum declining">↓ Maturing</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-heading">Sources</div>
+  <p>Later, Sprout Social, Social Insider, Hootsuite, NapoleonCat, NewenGen, Authoredup, DataSlayer, LinkedFusion, Martal, Pepper Agency, Mean CEO, SocialBee, ManyChat, Brand Nation, Startups.co.uk, Async, Anijam AI, Hype.ad, Blue Bear Creative, CreamyAnimation, HubSpot Marketing, SocialPilot</p>
+  <p style="margin-top: 12px;">Report generated 2026-11-08 for City of Sydney Digital Content Team Monday ideation meeting.</p>
+</footer>
+
+<div class="scroll-hint" id="scrollHint">SCROLL ↓</div>
+
+<script>
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+const scrollHint = document.getElementById('scrollHint');
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 200) {
+    scrollHint.classList.add('hidden');
+  }
+  
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    if (window.scrollY <= 200) {
+      scrollHint.classList.remove('hidden');
+    }
+  }, 150);
+});
+</script>
+
+</body>
+</html>
